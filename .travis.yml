@@ -20,6 +20,6 @@ script: py.test tests/src/ -v
 
 
 addons:
-    artifacts: true
+    artifacts:
         paths:
             - $(git ls-files -o | grep "\\bin\\" | tr "\n" ":")
