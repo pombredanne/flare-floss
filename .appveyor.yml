@@ -14,7 +14,7 @@ install:
     - ps: Start-FileDownload 'https://s3.amazonaws.com/build-resources.floss.flare.fireeye.com/appveyor/verpatch.exe'
     - ps: git describe --tags --always
     - ps: (git describe --tags --always).TrimStart("v").Split("-")[0]
-    - ps: & verpatch.exe "dist\\floss.exe" (git describe --tags --always).TrimStart("v").Split("-")[0] /va /high /langid 1033 /s description "FireEye Labs Obfuscated String Solver" /s company "FireEye" /s product "FLOSS"
+    - ps: verpatch.exe "dist\\floss.exe" (git describe --tags --always).TrimStart("v").Split("-")[0] /va /high /langid 1033 /s description "FireEye Labs Obfuscated String Solver" /s company "FireEye" /s product "FLOSS"
 
 
 build: off
