@@ -15,6 +15,9 @@ install:
     - ps: Set-Content "floss\\version.py" ( "__version__ = '{0}'" -f ( git describe --tags --always ) )
     - "%PYTHON%\\Scripts\\pip install -e ."
     - "%PYTHON%\\Scripts\\pyinstaller floss.spec"
+    - ps: Start-FileDownload 'https://s3.amazonaws.com/build-resources.floss.flare.fireeye.com/appveyor/verpatch.exe'
+    - verpatch.exe "dist\\floss.exe" (git describe --tags --always).TrimStart("v") /va /high /langid 1033 /s description "FireEye Labs Obfuscated String Solver" /s company "FireEye" /s product "FLOSS"
+
 
 build: off
 
