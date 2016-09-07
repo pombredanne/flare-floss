@@ -21,6 +21,7 @@ import plugins.arithmetic_plugin
 import identification_manager as im
 import plugins.library_function_plugin
 import plugins.function_meta_data_plugin
+import plugins.mov_plugin
 from interfaces import DecodingRoutineIdentifier
 from decoding_manager import LocationType
 from base64 import b64encode
@@ -106,6 +107,7 @@ def get_all_plugins():
         ps.append(plugins.library_function_plugin.FunctionIsLibraryPlugin())
         ps.append(plugins.arithmetic_plugin.XORPlugin())
         ps.append(plugins.arithmetic_plugin.ShiftPlugin())
+        ps.append(plugins.mov_plugin.MovPlugin())
     return ps
 
 
@@ -630,7 +632,7 @@ def main(argv=None):
         with open(sample_file_path, "rb") as f:
             magic = f.read(2)
 
-        if not options.no_static_strings:
+        if not options.no_static_strings and not options.functions:
             floss_logger.info("Extracting static strings...")
             print_static_strings(sample_file_path, min_length=min_length, quiet=options.quiet)
 
